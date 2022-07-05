@@ -1,7 +1,7 @@
 <h2>Template</h2>
 <hr>
 
-<ul class="list-group">
+<ul class="list-group mb-3">
     <li class="list-group-item" *ngFor="let item of templateMenu" [routerLink]="[item.ruta]" routerLinkActive="active">
         {{item.texto}}
     </li>
@@ -9,7 +9,7 @@
 
 <h2>Reactive</h2>
 <hr>
-<ul class="list-group mt-3">
+<ul class="list-group">
     <li class="list-group-item" *ngFor="let item of reactiveMenu" [routerLink]="[item.ruta]" routerLinkActive="active">
         {{item.texto}}
     </li>
