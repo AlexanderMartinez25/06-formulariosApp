@@ -17,11 +17,13 @@
     <!-- Agregar favorito -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Agregar</label>
+
         <div class="col-sm-9">
+
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Agregar favorito" aria-label="Agregar favorito"
-                    aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Agregar</button>
+                <input type="text" class="form-control" placeholder="Agregar favorito" aria-label="Agregar favorito">
+
+                <button class="btn btn-outline-secondary" type="button">Agregar</button>
             </div>
         </div>
     </div>
@@ -29,9 +31,15 @@
     <!-- lista de juegos favoritos -->
     <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">Favoritos</label>
+
         <div class="col-sm-9">
-            <input *ngFor="let juego of persona.favoritos; let i = index" [(ngModel)]="juego.nombre"
-                name="favorito_{{ i }}" type="text" class="form-control mb-1" required>
+
+            <div class="input-group mb-1" *ngFor="let juego of persona.favoritos; let i = index">
+                <input [(ngModel)]="juego.nombre" name="favorito_{{ i }}" type="text" class="form-control" required>
+
+                <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar</button>
+
+            </div>
         </div>
     </div>
 
