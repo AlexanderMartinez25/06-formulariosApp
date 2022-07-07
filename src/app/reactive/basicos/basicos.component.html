@@ -19,7 +19,8 @@
             <div class="mb-3 row">
                 <label for="precio" class="col-sm-3 col-form-label">Precio</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" name="precio" placeholder="Precio del producto">
+                    <input type="number" class="form-control" name="precio" placeholder="Precio del producto"
+                        formControlName="precio">
 
                     <span class="form-text text-danger">
                         El precio debe ser mayor o igual a 0</span>
@@ -29,7 +30,8 @@
             <div class="mb-3 row">
                 <label for="existencias" class="col-sm-3 col-form-label">Existencias</label>
                 <div class="col-sm-9">
-                    <input type="number" class="form-control" name="existencias" placeholder="Existencias del producto">
+                    <input type="number" class="form-control" name="existencias" placeholder="Existencias del producto"
+                        formControlName="existencias">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary float-end">Guardar</button>
