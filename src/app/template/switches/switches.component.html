@@ -9,14 +9,16 @@
         <div class="col-sm-9">
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioGenero" id="radioMasculino">
+                <input class="form-check-input" type="radio" value="M" [(ngModel)]="persona.genero" name="radioGenero"
+                    id="radioMasculino" required>
                 <label class="form-check-label" for="radioMasculino">
                     Masculino
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radioGenero" id="radioFemenino" checked>
+                <input class="form-check-input" type="radio" value="F" [(ngModel)]="persona.genero" name="radioGenero"
+                    id="radioFemenino" required>
                 <label class="form-check-label" for="radioFemenino">
                     Femenino
                 </label>
@@ -30,8 +32,9 @@
         <label class="col-sm-3 col-form-label">Notificaciones</label>
         <div class="col-sm-9">
 
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" [(ngModel)]="persona.notificaciones" name="notificaciones"
+                    type="checkbox" id="flexSwitchCheckChecked">
                 <label class=" form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
             </div>
 
@@ -44,7 +47,8 @@
         <div class="col-sm-9">
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="flexCheckChecked">
+                <input class="form-check-input" [(ngModel)]="terminosYCondiciones" name="terminos" type="checkbox"
+                    id="flexCheckChecked" required>
                 <label class="form-check-label" for="flexCheckChecked">
                     Término y condiciones
                 </label>
@@ -56,7 +60,25 @@
     <!-- Boton submit -->
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">Gaurdar</button>
+            <button class="btn btn-primary float-end" [disabled]="miFormulario.invalid">Gaurdar</button>
         </div>
     </div>
 </form>
+
+<h5>Valor de formulario</h5>
+<pre>{{ miFormulario.value | json }}</pre>
+<br>
+
+<h5>Persona</h5>
+<pre>{{ persona | json }}</pre>
+<br>
+
+<h5>Valid</h5>
+<pre>{{ miFormulario.valid }}</pre>
+<br>
+
+<h5>Términos</h5>
+<pre>{{ miFormulario.controls?.terminos?.errors | json }}</pre>
+<br>
+
+<pre>Condiciones: </pre>
