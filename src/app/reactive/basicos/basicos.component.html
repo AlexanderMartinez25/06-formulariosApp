@@ -34,7 +34,7 @@
                         formControlName="existencias">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary float-end">Guardar</button>
+            <button type="submit" [disabled]="miFormulario.invalid" class="btn btn-primary float-end">Guardar</button>
         </form>
     </div>
 </div>
