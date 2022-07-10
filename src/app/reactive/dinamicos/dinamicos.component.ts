@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -16,6 +16,7 @@ export class DinamicosComponent {
     return this.miFormulario.get('favoritos') as FormArray;
   }
 
+  // para el formulario con campos dinamicos
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
     favoritos: this.fb.array([
@@ -24,10 +25,23 @@ export class DinamicosComponent {
     ], Validators.required)
   })
 
+  // para el formulario de un solo input (agregar)
+  nuevoFavorito: FormControl = this.fb.control('', Validators.required)
+
   // validamos campos
   campoEsValido(campo: string) {
     return this.miFormulario.controls[campo].errors
       && this.miFormulario.controls[campo].touched;
+  }
+
+  agregarFavorito() {
+    if (this.nuevoFavorito.invalid) { return; }
+
+    // agregarmos el valor de nuevoFavorito al favoritosArr
+    // this.favoritosArr.push(new FormControl(this.nuevoFavorito.value, Validators.required))
+    this.favoritosArr.push(this.fb.control(this.nuevoFavorito.value, Validators.required))
+
+    this.nuevoFavorito.reset();
   }
 
   guardar() {

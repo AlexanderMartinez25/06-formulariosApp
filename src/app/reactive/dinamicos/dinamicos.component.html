@@ -21,12 +21,13 @@
                 <label class="col-sm-3 col-form-label">Agregar</label>
 
                 <div class="col-sm-9">
-
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Agregar favorito" name="nuevoJuego"
-                            (keyup.enter)="guardar()">
+                        <!-- aqui utilizamos formControl ya que es un input independiente de miFormulario -->
+                        <input type="text" class="form-control" [formControl]="nuevoFavorito"
+                            placeholder="Agregar favorito" name="nuevoJuego" (keyup.enter)="agregarFavorito()">
 
-                        <button class="btn btn-outline-secondary" type="submit" (click)="guardar()">Agregar</button>
+                        <button class="btn btn-outline-secondary" type="submit"
+                            (click)="agregarFavorito()">Agregar</button>
                     </div>
                 </div>
             </div>
@@ -60,16 +61,12 @@
         <span>Valid</span>
         <pre>{{miFormulario.valid}}</pre>
 
-        <span>Pristine</span>
-        <pre>{{miFormulario.pristine}}</pre>
-
-        <span>Touched</span>
-        <pre>{{miFormulario.touched}}</pre>
-
         <span>Value</span>
         <pre>{{miFormulario.value | json}}</pre>
 
-        <!-- <span>Precio</span>
-        <pre>{{miFormulario.controls.precio.errors | json}}</pre> -->
+        <span>Agregar Juego</span>
+        <pre>{{nuevoFavorito.valid}}</pre>
+        <pre>{{nuevoFavorito.value}}</pre>
+
     </div>
 </div>
