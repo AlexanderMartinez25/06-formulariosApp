@@ -19,6 +19,17 @@ export class SwitchesComponent implements OnInit {
       // utilizamos el spread operator para mandar las ondiciones tambien
       condiciones: false
     })
+
+
+    /*para mantener tanto el formulario como el obj persona sinconizado
+    se debe usar el ejemplo de aqui/ */
+    this.miFormulario.valueChanges.subscribe(({ condiciones, ...restoDeArgumentos }) => {
+      // ejemplo de como eliminar una propiedad de un objeto
+      // delete form.condiciones;
+
+      // solo le pasamos el genero y notificaciones obviando las condiciones
+      this.persona = restoDeArgumentos
+    })
   }
 
   miFormulario: FormGroup = this.fb.group({
@@ -31,6 +42,15 @@ export class SwitchesComponent implements OnInit {
   persona = {
     genero: 'F',
     notificaciones: true,
+  }
+  guardar() {
+    const formValue = { ...this.miFormulario.value };
+
+    // ejemplo de como eliminar una propiedad de un objeto
+    delete formValue.condiciones;
+
+    this.persona = formValue;
+
   }
 
 }
