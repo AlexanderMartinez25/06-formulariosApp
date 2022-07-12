@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BasicosComponent } from './basicos/basicos.component';
 import { DinamicosComponent } from './dinamicos/dinamicos.component';
 import { SwitchesComponent } from './switches/switches.component';
-import { AuthRoutingModule } from '../auth/auth-routing.module';
+import { ReactiveRountingModule } from './reactive-routing.module';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { AuthRoutingModule } from '../auth/auth-routing.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    ReactiveRountingModule
   ]
 })
 export class ReactiveModule { }
