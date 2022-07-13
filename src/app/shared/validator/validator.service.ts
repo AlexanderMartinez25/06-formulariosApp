@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormControl, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,24 @@ export class ValidatorService {
     }
 
     return null;
+  }
 
+  camposIguales(campo1: string, campo2: string) {
+    return (FormGroup: AbstractControl): ValidationErrors | null => {
+
+      const pass1 = FormGroup.get(campo1)?.value;
+      const pass2 = FormGroup.get(campo2)?.value;
+
+      if (pass1 !== pass2) {
+        // para que aparesca tambien el error en la password2
+        FormGroup.get(campo2)?.setErrors({ noIguales: true })
+        return { noIguales: true }
+      }
+
+      // para que quite el mensaje de error caundo ambas contraseñas coinciden
+      FormGroup.get(campo2)?.setErrors(null);
+
+      return null
+    }
   }
 }
