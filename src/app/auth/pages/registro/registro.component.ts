@@ -13,7 +13,7 @@ export class RegistroComponent implements OnInit {
 
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.pattern(this.vs.nombreApellitoPattern)]],
-    // la unica validacioen que es asincrona
+    // la unica validacion que es asincrona
     email: ['', [Validators.required, Validators.pattern(this.vs.emailPattern)], [this.ev]],
     username: ['', [Validators.required, this.vs.noPuedeSerStraider]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -21,6 +21,20 @@ export class RegistroComponent implements OnInit {
   }, {
     validators: [this.vs.camposIguales('password', 'password2')]
   })
+
+  // obtenemos todos los errores del email
+  get emailErrorMsg(): string {
+    const errors = this.miFormulario.get('email')?.errors;
+
+    if (errors?.required) {
+      return 'Email es obligatorio';
+    } else if (errors?.pattern) {
+      return 'El valor ingresado no tiene formato válido'
+    } else if (errors?.emailTomado) {
+      return 'El mail ya fue tomado'
+    }
+    return '';
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +60,6 @@ export class RegistroComponent implements OnInit {
   submitFormulario() {
     console.log(this.miFormulario.value);
     this.miFormulario.markAllAsTouched();
-
   }
 
 }
